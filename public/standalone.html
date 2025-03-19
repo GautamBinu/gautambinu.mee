@@ -1,0 +1,813 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gautam Binu</title>
+  <link rel="icon" href="../favicon-32x32.png" type="image/png">
+  <meta name="description" content="Gautam Binu - Designer & Developer Portfolio" />
+  <meta name="author" content="Gautam Binu" />
+  <meta property="og:image" content="/og-image.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light only">
+  <meta property="og:site_name" content="Gautam Binu">
+  <meta property="og:title" content="Gautam Binu">
+  <meta property="og:type" content="website">
+  <meta property="og:description" content="Fueled by code, coffee, creativity—and the occasional cupcake.">
+  <meta property="og:image" content="https://s6.imgcdn.dev/Es6bi.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="800">
+  <style>
+    /* Base styles */
+    :root {
+      --background: 0, 0%, 0%;
+      --foreground: 0, 0%, 100%;
+      --border: rgba(255, 255, 255, 0.1);
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+    
+    @keyframes lineAppear {
+      from {
+        transform: scaleX(0);
+      }
+      to {
+        transform: scaleX(1);
+      }
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      font-weight: 900;
+      background-color: hsl(var(--background));
+      color: hsl(var(--foreground));
+      min-height: 100vh;
+      letter-spacing: -0.01em;
+      overflow-x: hidden;
+    }
+    
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    
+    /* Background lines */
+    .bg-lines {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      opacity: 0.05;
+    }
+    
+    .bg-line {
+      height: 1px;
+      width: 100%;
+      background-color: #fff;
+    }
+    
+    /* Header */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      padding: 1.5rem 1.5rem;
+      transition: all 0.3s;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .header.scrolled {
+      background-color: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(8px);
+    }
+    
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    
+    .theme-buttons {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .theme-button {
+      background: none;
+      border: none;
+      color: inherit;
+      font-family: inherit;
+      font-size: 0.75rem;
+      cursor: pointer;
+      opacity: 0.5;
+      transition: opacity 0.3s;
+    }
+    
+    .theme-button.active {
+      opacity: 1;
+    }
+    
+    .theme-button:hover {
+      opacity: 0.7;
+    }
+    
+    .brand-text {
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      opacity: 0.9;
+      transition: opacity 0.3s;
+    }
+    
+    .brand-text:hover {
+      opacity: 1;
+    }
+    
+    .subtitle {
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      opacity: 0.6;
+    }
+    
+    .email-link {
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      opacity: 0.9;
+      transition: opacity 0.3s;
+      position: relative;
+    }
+    
+    .email-link:hover {
+      opacity: 1;
+    }
+    
+    .email-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 1px;
+      bottom: -2px;
+      left: 0;
+      background-color: currentColor;
+      transition: width 0.3s;
+    }
+    
+    .email-link:hover::after {
+      width: 100%;
+    }
+    
+    /* Hero Section */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 1.5rem;
+    }
+    
+    .hero-title {
+      font-size: 16vw;
+      line-height: 0.9;
+      letter-spacing: -0.03em;
+      animation: fadeIn 1s 0.2s forwards;
+      opacity: 0;
+    }
+    
+    .social-icons {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+      animation: fadeIn 1s 0.6s forwards;
+      opacity: 0;
+    }
+    
+    .social-icon {
+      transition: opacity 0.3s;
+    }
+    
+    .social-icon:hover {
+      opacity: 0.7;
+    }
+    
+    .scroll-indicator {
+      position: absolute;
+      bottom: 4rem;
+      left: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      animation: fadeIn 1s 0.8s forwards;
+      opacity: 0;
+    }
+    
+    .arrow-down {
+      animation: float 2s infinite;
+    }
+    
+    .scroll-text {
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+    
+    /* About Section */
+    .section {
+      padding: 4rem 1.5rem;
+    }
+    
+    .section-padding {
+      padding: 4rem 1.5rem;
+    }
+    
+    .max-width {
+      max-width: 80rem;
+      margin: 0 auto;
+    }
+    
+    .separator {
+      width: 100%;
+      height: 1px;
+      background-color: var(--border);
+      opacity: 0.5;
+      transform-origin: left;
+      animation: lineAppear 1s forwards;
+      margin: 1.5rem 0;
+    }
+    
+    .about-text {
+      font-size: 1.5rem;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      margin: 1.5rem 0;
+    }
+    
+    /* Work Section */
+    .section-title {
+      font-size: 12vw;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin-bottom: 4rem;
+      opacity: 0;
+      transform: translateY(1rem);
+      transition: all 0.7s;
+    }
+    
+    .section-title.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .work-item {
+      display: block;
+      padding: 2rem 0;
+      border-top: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+    
+    .work-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    
+    .work-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .work-id {
+      font-size: 0.75rem;
+      opacity: 0.6;
+      letter-spacing: 0.05em;
+    }
+    
+    .work-title {
+      font-size: 2rem;
+      letter-spacing: -0.02em;
+      transition: transform 0.3s;
+    }
+    
+    .work-item:hover .work-title {
+      transform: translateX(0.25rem);
+    }
+    
+    .work-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      font-size: 0.75rem;
+      opacity: 0.7;
+      letter-spacing: 0.05em;
+    }
+    
+    .arrow-icon {
+      transition: transform 0.3s;
+    }
+    
+    .work-item:hover .arrow-icon {
+      transform: translate(0.25rem, -0.25rem);
+    }
+    
+    /* Services Section */
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    
+    .service-card {
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      border-radius: 0.25rem;
+      transition: border-color 0.3s;
+    }
+    
+    .service-card:hover {
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+    
+    .service-id {
+      font-size: 0.75rem;
+      opacity: 0.6;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+    
+    .service-title {
+      font-size: 1.25rem;
+      letter-spacing: -0.01em;
+    }
+    
+    /* Contact Section */
+    .contact-title {
+      font-size: 1.5rem;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+    
+    .contact-email {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+      transition: border-color 0.3s;
+    }
+    
+    .contact-email:hover {
+      border-color: #fff;
+    }
+    
+    /* Footer */
+    .footer {
+      padding: 2rem 1.5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .copyright {
+      font-size: 0.75rem;
+      opacity: 0.6;
+      letter-spacing: 0.05em;
+    }
+    
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    
+    .footer-link {
+      font-size: 0.75rem;
+      opacity: 0.6;
+      letter-spacing: 0.05em;
+      transition: opacity 0.3s;
+    }
+    
+    .footer-link:hover {
+      opacity: 1;
+    }
+    
+    /* Media Queries */
+    @media (min-width: 640px) {
+      .section-padding {
+        padding: 6rem 2.5rem;
+      }
+      
+      .header {
+        padding: 1.5rem 2.5rem;
+      }
+      
+      .hero {
+        padding: 1.5rem 2.5rem;
+      }
+      
+      .scroll-indicator {
+        left: 2.5rem;
+      }
+      
+      .work-meta {
+        flex-direction: row;
+        gap: 1rem;
+      }
+      
+      .work-meta span:not(:last-child)::after {
+        content: '•';
+        margin-left: 1rem;
+      }
+    }
+    
+    @media (min-width: 768px) {
+      .hero-title {
+        font-size: 14vw;
+      }
+      
+      .services-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .about-text {
+        font-size: 2rem;
+      }
+      
+      .work-title {
+        font-size: 3rem;
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .hero-title {
+        font-size: 12vw;
+      }
+      
+      .services-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+      
+      .about-text {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Background fixed lines -->
+  <div class="bg-lines">
+    <div class="bg-line"></div>
+    <div class="bg-line"></div>
+    <div class="bg-line"></div>
+    <div class="bg-line"></div>
+    <div class="bg-line"></div>
+    <div class="bg-line"></div>
+    <div class="bg-line"></div>
+    <div class="bg-line"></div>
+  </div>
+
+  <div class="relative">
+    <!-- Header -->
+    <header class="header" id="header">
+      <div class="header-left">
+        <a href="#" class="brand-text">GAUTAM BINU.</a>
+        <span class="subtitle">DESIGNER & DEVELOPER.</span>
+      </div>
+      
+      <div class="header-right">
+        <a href="mailto:me@gautambinu.co" class="email-link">me@gautambinu.co</a>
+        <div class="theme-buttons">
+          <button class="theme-button active" data-theme="1">THEME ONE</button>
+          <button class="theme-button" data-theme="2">THEME TWO</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="hero">
+        <div>
+          <h1 class="hero-title">
+            Gautam<br/>Binu.
+          </h1>
+          
+          <div class="social-icons">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+              </svg>
+              <span class="sr-only">Instagram</span>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-twitter">
+                <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/>
+              </svg>
+              <span class="sr-only">Twitter</span>
+            </a>
+            <a href="https://spotify.com" target="_blank" rel="noopener noreferrer" class="social-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-music">
+                <path d="M9 18V5l12-2v13"/>
+                <circle cx="6" cy="18" r="3"/>
+                <circle cx="18" cy="16" r="3"/>
+              </svg>
+              <span class="sr-only">Spotify</span>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                <rect width="4" height="12" x="2" y="9"/>
+                <circle cx="4" cy="4" r="2"/>
+              </svg>
+              <span class="sr-only">LinkedIn</span>
+            </a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github">
+                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                <path d="M9 18c-4.51 2-5-2-7-2"/>
+              </svg>
+              <span class="sr-only">GitHub</span>
+            </a>
+          </div>
+        </div>
+        
+        <div class="scroll-indicator">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="arrow-down">
+            <path d="M12 5v14"/>
+            <path d="m19 12-7 7-7-7"/>
+          </svg>
+          <span class="scroll-text">SCROLL TO EXPLORE</span>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section class="section-padding" id="about">
+        <div class="max-width">
+          <div class="separator"></div>
+          <p class="about-text">
+            AS A SEASONED DESIGNER & DEVELOPER, I SPECIALIZE IN TRANSFORMING ORDINARY CONCEPTS INTO EXTRAORDINARY EXPERIENCES.
+          </p>
+          <div class="separator"></div>
+          <p class="about-text">
+            THROUGH A BLEND OF RESEARCH, CREATIVITY, AND AN INNATE UNDERSTANDING OF DESIGN AND TECHNOLOGY, I CRAFT SOLUTIONS THAT WEAVE A COMPELLING STORY, DISTILLS COMPLEX IDEAS INTO DIGESTIBLE INSIGHTS, AND BREATHES LIFE INTO BRAND MESSAGING.
+          </p>
+          <div class="separator"></div>
+        </div>
+      </section>
+
+      <!-- Work Section -->
+      <section class="section-padding" id="work">
+        <h2 class="section-title" id="workTitle">Select Work</h2>
+        
+        <div>
+          <a href="#" class="work-item">
+            <div class="work-content">
+              <div class="work-info">
+                <span class="work-id">001</span>
+                <h3 class="work-title">Project One</h3>
+                <div class="work-meta">
+                  <span>WEBSITE / DESIGN</span>
+                  <span>JUN 8, 2023</span>
+                </div>
+              </div>
+              
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="arrow-icon">
+                  <path d="m7 17 10-10"/>
+                  <path d="M7 7h10v10"/>
+                </svg>
+              </div>
+            </div>
+          </a>
+          
+          <a href="#" class="work-item">
+            <div class="work-content">
+              <div class="work-info">
+                <span class="work-id">002</span>
+                <h3 class="work-title">Project Two</h3>
+                <div class="work-meta">
+                  <span>BRANDING / DEVELOPMENT</span>
+                  <span>APR 19, 2023</span>
+                </div>
+              </div>
+              
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="arrow-icon">
+                  <path d="m7 17 10-10"/>
+                  <path d="M7 7h10v10"/>
+                </svg>
+              </div>
+            </div>
+          </a>
+          
+          <a href="#" class="work-item">
+            <div class="work-content">
+              <div class="work-info">
+                <span class="work-id">003</span>
+                <h3 class="work-title">Project Three</h3>
+                <div class="work-meta">
+                  <span>UI/UX / DESIGN</span>
+                  <span>JUL 8, 2023</span>
+                </div>
+              </div>
+              
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="arrow-icon">
+                  <path d="m7 17 10-10"/>
+                  <path d="M7 7h10v10"/>
+                </svg>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- Services Section -->
+      <section class="section-padding" id="services">
+        <h2 class="section-title" id="servicesTitle">Services</h2>
+        
+        <div class="services-grid">
+          <div class="service-card">
+            <span class="service-id">1</span>
+            <h3 class="service-title">UI Design</h3>
+          </div>
+          <div class="service-card">
+            <span class="service-id">2</span>
+            <h3 class="service-title">Development</h3>
+          </div>
+          <div class="service-card">
+            <span class="service-id">3</span>
+            <h3 class="service-title">Branding</h3>
+          </div>
+          <div class="service-card">
+            <span class="service-id">4</span>
+            <h3 class="service-title">Strategy</h3>
+          </div>
+          <div class="service-card">
+            <span class="service-id">5</span>
+            <h3 class="service-title">Web Design</h3>
+          </div>
+          <div class="service-card">
+            <span class="service-id">6</span>
+            <h3 class="service-title">Art Direction</h3>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section class="section-padding" id="contact">
+        <div class="separator"></div>
+        
+        <div class="max-width">
+          <h2 class="contact-title">
+            YOUR MESSAGE, MY EXPERTISE – A PERFECT MATCH.
+          </h2>
+          
+          <div class="about-text">
+            GET IN TOUCH:{' '}
+            <a href="mailto:me@gautambinu.co" class="contact-email">
+              me@gautambinu.co
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p class="copyright">
+        © GAUTAM BINU ${new Date().getFullYear()}
+      </p>
+      
+      <div class="footer-links">
+        <a href="#" class="footer-link">TWITTER</a>
+        <a href="#" class="footer-link">INSTAGRAM</a>
+        <a href="#" class="footer-link">LINKEDIN</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // ScrollReveal-like behavior for section titles
+    const observeSectionTitles = () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      document.querySelectorAll('.section-title').forEach(title => {
+        observer.observe(title);
+      });
+    };
+    
+    // Header scroll behavior
+    const handleScroll = () => {
+      const header = document.getElementById('header');
+      if (window.scrollY > 20) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    };
+    
+    // Theme switching
+    const initThemeButtons = () => {
+      const themeButtons = document.querySelectorAll('.theme-button');
+      
+      themeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          // Remove active class from all buttons
+          themeButtons.forEach(btn => btn.classList.remove('active'));
+          // Add active class to clicked button
+          button.classList.add('active');
+          
+          // Here you would implement actual theme switching
+          // For now, we'll just log which theme was selected
+          console.log(`Theme ${button.dataset.theme} selected`);
+        });
+      });
+    };
+    
+    // Smooth scrolling for anchor links
+    const initSmoothScrolling = () => {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+    };
+    
+    // Initialize everything when the DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      observeSectionTitles();
+      initThemeButtons();
+      initSmoothScrolling();
+      
+      // Add scroll event listener
+      window.addEventListener('scroll', handleScroll);
+      
+      // Trigger initial scroll check
+      handleScroll();
+    });
+  </script>
+</body>
+</html>

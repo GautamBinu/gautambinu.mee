@@ -1,0 +1,154 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 3%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 3%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 0 0% 80%;
+
+    --radius: 0.5rem;
+  }
+
+  :root[data-theme="orange"] {
+    --background: 16 100% 40%;  /* Bright orange/red like the image */
+    --foreground: 350 100% 94%; /* Soft pink color for text */
+
+    --card: 16 80% 35%;
+    --card-foreground: 350 100% 94%;
+
+    --popover: 16 80% 35%;
+    --popover-foreground: 350 100% 94%;
+
+    --primary: 350 100% 94%;
+    --primary-foreground: 16 100% 40%;
+
+    --secondary: 16 75% 45%;
+    --secondary-foreground: 350 100% 94%;
+
+    --muted: 16 70% 35%;
+    --muted-foreground: 350 100% 88%;
+
+    --accent: 16 70% 35%;
+    --accent-foreground: 350 100% 94%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 16 60% 45%;
+    --input: 16 60% 45%;
+    --ring: 350 100% 94%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-inter font-black antialiased;
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer utilities {
+  .animated-underline {
+    position: relative;
+    text-decoration: none;
+  }
+  
+  .animated-underline::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: -2px;
+    left: 0;
+    background-color: currentColor;
+    transition: width 0.3s ease-out;
+  }
+  
+  .animated-underline:hover::after {
+    width: 100%;
+  }
+
+  .separator-line {
+    @apply w-full h-px bg-border opacity-50 transform origin-left;
+    animation-delay: 0.2s;
+  }
+
+  .horizontal-line {
+    @apply w-full h-px bg-border opacity-50;
+  }
+
+  .hover-arrow {
+    @apply transition-transform duration-300 ease-out;
+  }
+
+  .hover-arrow:hover {
+    @apply transform -translate-y-1 translate-x-1;
+  }
+
+  .service-card {
+    @apply border border-border/20 hover:border-border/50 transition-colors duration-300 p-6 rounded-sm;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  .smooth-transition {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .navbar-item {
+    @apply opacity-70 hover:opacity-100 transition-opacity;
+  }
+}
+
+/* Animation for line appearance */
+@keyframes lineAppear {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+.animate-line-appear {
+  animation: lineAppear 0.8s ease-out forwards;
+}
