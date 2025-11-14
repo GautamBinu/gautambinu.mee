@@ -46,10 +46,10 @@ const Header = () => {
       
       <div className="flex items-center space-x-6 md:space-x-12">
         <a 
-          href="mailto:me@gautambinu.co" 
+          href="mailto:hello@gautambinu.me" 
           className="text-xs sm:text-sm tracking-wide opacity-90 hover:opacity-100 transition-opacity animated-underline hidden sm:block"
         >
-          me@gautambinu.co
+          hello@gautambinu.me
         </a>
         <div className="flex space-x-4">
           <button 

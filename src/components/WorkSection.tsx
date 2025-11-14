@@ -27,10 +27,10 @@ const workItems: WorkItem[] = [
   },
   {
     id: '003',
-    title: 'ATCEMS',
-    categories: 'AI / AVIATION',
-    date: 'WIP',
-    link: 'https://ampierelabs.com/'
+    title: 'MeteorSpace',
+    categories: 'AI / NASA SPACE APPS',
+    date: 'OCTOBER, 2025',
+    link: 'https://meteorspace.hishaam.me/'
   }
 ];
 

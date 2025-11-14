@@ -42,10 +42,10 @@ const ContactSection = () => {
         <div className="text-xl sm:text-2xl md:text-3xl font-black tracking-tight leading-tight uppercase">
           GET IN TOUCH:{' '}
           <a 
-            href="mailto:me@gautambinu.co" 
+            href="mailto:hello@gautambinu.me" 
             className="border-b border-white/50 hover:border-white transition-colors"
           >
-            me@gautambinu.co
+            hello@gautambinu.me
           </a>
         </div>
       </div>
